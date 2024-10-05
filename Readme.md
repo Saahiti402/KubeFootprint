@@ -55,15 +55,6 @@ You should have 6 pods running in the namespace.
 
 kubectl -n sleepme get pods
 
-Should output something like:
-
-NAME                                      READY   STATUS    RESTARTS   AGE
-do-not-sleep-5b88f75df7-wmms2             1/1     Running   0          107s
-echo-service-replica-1-6845b564c6-zvt7x   1/1     Running   0          102s
-echo-service-replica-4-5f97664965-22kmw   1/1     Running   0          115s
-echo-service-replica-4-5f97664965-2x9dj   1/1     Running   0          115s
-echo-service-replica-4-5f97664965-6wpb7   1/1     Running   0          115s
-echo-service-replica-4-5f97664965-pcl6q   1/1     Running   0          115s
 
 Setup kube-green in application namespace
 To setup kube-green, the SleepInfo resource must be created in sleepme namespace.
@@ -118,18 +109,3 @@ watch kubectl -n sleepme get pods
 otherwise
 
 kubectl -n sleepme get pods -w
-
-At the time set in the configuration for the sleep, all pods except the do-not-sleep should sleep.
-
-NAME                            READY   STATUS    RESTARTS   AGE
-do-not-sleep-5b88f75df7-wmms2   1/1     Running   0          13m
-
-At the time set in the configuration for the wake up, all pods will wake up at the initial number of replicas
-
-NAME                                      READY   STATUS    RESTARTS   AGE
-do-not-sleep-5b88f75df7-wmms2             1/1     Running   0          16m
-echo-service-replica-1-6845b564c6-hbjv9   1/1     Running   0          92s
-echo-service-replica-4-5f97664965-42xbs   1/1     Running   0          92s
-echo-service-replica-4-5f97664965-9wbqn   1/1     Running   0          92s
-echo-service-replica-4-5f97664965-c4kzf   1/1     Running   0          92s
-echo-service-replica-4-5f97664965-n72tr   1/1     Running   0          92s
